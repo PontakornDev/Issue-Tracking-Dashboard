@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { Select, Button, Space, Input } from "antd";
 import { PlusOutlined, FilterOutlined } from "@ant-design/icons";
-import { Issue, PRIORITY_LEVELS } from "@/types/issue";
+import { Issue } from "@/types/issue";
 
 interface FilterBarProps {
   issues: Issue[];

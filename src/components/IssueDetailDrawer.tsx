@@ -13,8 +13,8 @@ import {
   Spin,
   Modal,
 } from "antd";
-import { Issue, ISSUE_STATUSES, PRIORITY_LEVELS, Officer } from "@/types/issue";
-import { Badge, Tag } from "@/components/common";
+import { Issue, PRIORITY_LEVELS, Officer } from "@/types/issue";
+import { Tag } from "@/components/common";
 import { issueAPI } from "@/api/issueAPI";
 
 interface IssueDetailDrawerProps {

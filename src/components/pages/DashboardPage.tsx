@@ -19,8 +19,7 @@ import {
   ExclamationCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-// import { MOCK_ISSUES } from "@/data/mockIssues";
-import { Issue, ISSUE_STATUSES, PRIORITY_LEVELS } from "@/types/issue";
+import { Issue, PRIORITY_LEVELS } from "@/types/issue";
 import { Card, Badge, IssueTable } from "@/components/common";
 import { FilterBar } from "@/components/FilterBar";
 import { IssueDetailDrawer } from "@/components/IssueDetailDrawer";
@@ -97,11 +96,9 @@ export default function DashboardPage() {
       key: "status",
       width: 140,
       render: (displayName: string, record: Issue) => {
-        const statusCode = record.status?.status_code;
-        const statusConfig =
-          ISSUE_STATUSES[statusCode as keyof typeof ISSUE_STATUSES];
-        return statusConfig ? (
-          <Badge status={statusCode} statusConfig={statusConfig} />
+        const color = record.status?.color;
+        return color ? (
+          <Badge label={displayName} color={color} />
         ) : (
           <span>{displayName}</span>
         );

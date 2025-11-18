@@ -2,24 +2,21 @@ import React from "react";
 import { Tag } from "./Tag";
 
 interface BadgeProps {
-  status: string;
-  statusConfig: {
-    label: string;
-    color: string;
-  };
+  label: string;
+  color: string;
   className?: string;
 }
 
 export const Badge: React.FC<BadgeProps> = ({
-  status,
-  statusConfig,
+  label,
+  color,
   className = "",
 }) => {
   return (
     <Tag
-      label={statusConfig.label}
+      label={label}
       color="#fff"
-      backgroundColor={statusConfig.color}
+      backgroundColor={color}
       className={`text-xs font-bold ${className}`}
     />
   );

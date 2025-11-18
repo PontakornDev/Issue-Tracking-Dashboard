@@ -56,15 +56,6 @@ export interface Issue {
   assignee?: Officer; // Optional assignee (officer)
 }
 
-// Legacy/UI Status mapping (for color coding)
-export const ISSUE_STATUSES: Record<string, { label: string; color: string }> =
-  {
-    open: { label: "Open", color: "#d4380d" },
-    "in-progress": { label: "In Progress", color: "#faad14" },
-    closed: { label: "Closed", color: "#1677ff" },
-    resolved: { label: "Resolved", color: "#52c41a" },
-  };
-
 // Priority levels with colors
 export const PRIORITY_LEVELS: Record<
   Priority,
