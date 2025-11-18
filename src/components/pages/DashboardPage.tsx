@@ -10,18 +10,21 @@ import {
   Empty,
   Spin,
   message,
+  Button,
 } from "antd";
 import {
   FileTextOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
   ExclamationCircleOutlined,
+  PlusOutlined,
 } from "@ant-design/icons";
 // import { MOCK_ISSUES } from "@/data/mockIssues";
 import { Issue, ISSUE_STATUSES, PRIORITY_LEVELS } from "@/types/issue";
 import { Card, Badge, IssueTable } from "@/components/common";
 import { FilterBar } from "@/components/FilterBar";
 import { IssueDetailDrawer } from "@/components/IssueDetailDrawer";
+import { AddIssueModal } from "@/components/AddIssueModal";
 import { issueAPI } from "@/api/issueAPI";
 
 export default function DashboardPage() {
@@ -32,6 +35,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [useLocalData, setUseLocalData] = useState(false);
+  const [addIssueModalOpen, setAddIssueModalOpen] = useState(false);
 
   // Fetch issues from API
   useEffect(() => {
@@ -165,15 +169,44 @@ export default function DashboardPage() {
     );
   };
 
+  const handleIssueCreated = () => {
+    // Refresh issues list after new issue created
+    setLoading(true);
+    issueAPI
+      .getIssues()
+      .then((data) => {
+        setIssues(data);
+        setFilteredIssues(data);
+        message.success("Issue created and list updated!");
+      })
+      .catch((err) => {
+        console.error("Failed to refresh issues:", err);
+        message.error("Failed to refresh issue list");
+      })
+      .finally(() => setLoading(false));
+  };
+
   return (
     <ConfigProvider>
       <div className="min-h-screen bg-gray-50 p-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-              Issue Tracking Dashboard
-            </h1>
+            <div className="flex justify-between items-center">
+              <div>
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">
+                  Issue Tracking Dashboard
+                </h1>
+              </div>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={() => setAddIssueModalOpen(true)}
+                size="large"
+              >
+                Add Issue
+              </Button>
+            </div>
             {useLocalData && (
               <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-2">
                 <ExclamationCircleOutlined className="text-yellow-600" />
@@ -267,6 +300,14 @@ export default function DashboardPage() {
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         onStatusUpdate={handleStatusUpdate}
+      />
+
+      {/* Add Issue Modal */}
+      <AddIssueModal
+        visible={addIssueModalOpen}
+        onClose={() => setAddIssueModalOpen(false)}
+        onSuccess={handleIssueCreated}
+        reporterId={1}
       />
     </ConfigProvider>
   );
