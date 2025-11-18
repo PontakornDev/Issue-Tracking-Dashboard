@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Issue Tracking Dashboard Frontend
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: issue-tracking-dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - issue-tracking-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Backend API (placeholder - update with your backend service)
+  backend:
+    image: node:18-alpine
+    container_name: issue-tracking-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    command: npm start
+    restart: unless-stopped
+    networks:
+      - issue-tracking-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  issue-tracking-network:
+    driver: bridge
+
+volumes:
+  node_modules:
+  .next:
