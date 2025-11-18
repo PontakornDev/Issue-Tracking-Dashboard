@@ -96,6 +96,10 @@ export const IssueDetailDrawer: React.FC<IssueDetailDrawerProps> = ({
       if (onStatusUpdate) {
         onStatusUpdate(updatedIssue);
       }
+      // Close drawer after successful status update
+      setTimeout(() => {
+        onClose();
+      }, 500);
     } catch (error) {
       message.error("Failed to update issue status");
       console.error(error);
@@ -129,6 +133,10 @@ export const IssueDetailDrawer: React.FC<IssueDetailDrawerProps> = ({
       if (onStatusUpdate) {
         onStatusUpdate(updatedIssue);
       }
+      // Close drawer after successful status update
+      setTimeout(() => {
+        onClose();
+      }, 500);
     } catch (error) {
       message.error("Failed to update issue status");
       console.error(error);

@@ -167,6 +167,22 @@ export default function DashboardPage() {
         issue.issue_id === updatedIssue.issue_id ? updatedIssue : issue
       )
     );
+
+    // Refresh issue list from API to get latest data
+    const refreshIssues = async () => {
+      try {
+        const data = await issueAPI.getIssues();
+        setIssues(data);
+        setFilteredIssues(data);
+      } catch (error) {
+        console.error("Failed to refresh issues:", error);
+      }
+    };
+
+    // Call refresh after a short delay to ensure drawer closes first
+    setTimeout(() => {
+      refreshIssues();
+    }, 600);
   };
 
   const handleIssueCreated = () => {
