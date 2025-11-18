@@ -83,7 +83,6 @@ export const FilterBar: React.FC<FilterBarProps> = ({
               { label: "Open", value: "open" },
               { label: "In Progress", value: "in-progress" },
               { label: "Closed", value: "closed" },
-              { label: "Resolved", value: "resolved" },
             ]}
             size="large"
           />

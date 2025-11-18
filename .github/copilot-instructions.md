@@ -49,14 +49,14 @@ Configuration Files:
 
 ### 1. Dashboard Statistics
 
-- Displays total issues, open, in-progress, and resolved counts
+- Displays total issues, open, in-progress counts
 - Uses Ant Design Statistic components with icons
 - Color-coded for quick visual reference
 
 ### 2. Advanced Filtering
 
 - Filter by Project (dropdown)
-- Filter by Status (Open, In Progress, Closed, Resolved)
+- Filter by Status (Open, In Progress, Closed)
 - Full-text search across titles, IDs, and descriptions
 - Reset filters button
 - Real-time filtering updates
@@ -96,7 +96,7 @@ Edit `src/data/mockIssues.ts` and add to `MOCK_ISSUES` array:
   id: 'ISS-XXX',
   title: 'Issue title',
   description: 'Detailed description',
-  status: 'open' | 'in-progress' | 'closed' | 'resolved',
+  status: 'open' | 'in-progress' | 'closed' ,
   project: 'Project name',
   priority: 'low' | 'medium' | 'high' | 'critical',
   assignee: 'Name',
@@ -124,7 +124,6 @@ Edit `src/data/mockIssues.ts` and add to `MOCK_ISSUES` array:
 - **Open**: #d4380d (Red)
 - **In Progress**: #faad14 (Orange)
 - **Closed**: #1677ff (Blue)
-- **Resolved**: #52c41a (Green)
 
 ## Running the Project
 

@@ -65,11 +65,7 @@ export default function DashboardPage() {
       open: issues.filter((i) => i.status?.status_code === "open").length,
       inProgress: issues.filter((i) => i.status?.status_code === "in-progress")
         .length,
-      resolved: issues.filter(
-        (i) =>
-          i.status?.status_code === "resolved" ||
-          i.status?.status_code === "closed"
-      ).length,
+      resolved: issues.filter((i) => i.status?.status_code === "closed").length,
     };
   }, [issues]);
 

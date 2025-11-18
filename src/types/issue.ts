@@ -1,5 +1,5 @@
 // Status types
-export type IssueStatus = "open" | "in-progress" | "closed" | "resolved";
+export type IssueStatus = "open" | "in-progress" | "closed";
 export type Priority = "low" | "medium" | "high" | "critical";
 
 // User interface

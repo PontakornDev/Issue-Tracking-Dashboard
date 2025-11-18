@@ -67,7 +67,6 @@ export const IssueDetailDrawer: React.FC<IssueDetailDrawerProps> = ({
     open: 1,
     "in-progress": 2,
     closed: 3,
-    resolved: 4,
   };
 
   const handleStatusChange = async (newStatusCode: string) => {
@@ -194,7 +193,6 @@ export const IssueDetailDrawer: React.FC<IssueDetailDrawerProps> = ({
                   { label: "Open", value: "open" },
                   { label: "In Progress", value: "in-progress" },
                   { label: "Closed", value: "closed" },
-                  { label: "Resolved", value: "resolved" },
                 ]}
               />
               {priorityConfig && (
