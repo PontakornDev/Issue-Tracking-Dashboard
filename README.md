@@ -55,6 +55,24 @@ npm run build
 npm start
 ```
 
+### Docker
+
+Build the Docker image:
+
+```bash
+docker build -t issue-tracking-dashboard:latest .
+```
+
+Run the Docker container:
+
+```bash
+docker run -d --name issue-frontend -p 3000:3000 \
+  -e NODE_ENV=production \
+  -e NEXT_PUBLIC_API_BASE_URL=http://host.docker.internal:8080/api \
+  -e NEXT_TELEMETRY_DISABLED=1 \
+  issue-tracking-dashboard:latest
+```
+
 ## Project Structure
 
 ```
